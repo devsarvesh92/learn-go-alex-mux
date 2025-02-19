@@ -14,6 +14,8 @@ func main() {
 	if err != nil {
 		fmt.Printf(err.Error())
 	} else {
-		fmt.Printf("Value of quotient %v and reminder %v", q, r)
+		fmt.Printf("Value of quotient %v and reminder %v \n", q, r)
 	}
+
+	fmt.Printf("Find number %v \n", basics.SearchNumber([]int{3, 2, 1}, 1))
 }
