@@ -19,3 +19,25 @@ func SearchNumber(numbers []int, number int) bool {
 	}
 	return false
 }
+
+func ValidAnagram(s string, t string) bool {
+
+	s_count := make(map[rune]int)
+	t_count := make(map[rune]int)
+
+	for _, c := range s {
+		s_count[c] += 1
+	}
+
+	for _, c := range t {
+		t_count[c] += 1
+	}
+
+	for key, value := range s_count {
+		if t_count[key] != value {
+			return false
+		}
+	}
+
+	return true
+}

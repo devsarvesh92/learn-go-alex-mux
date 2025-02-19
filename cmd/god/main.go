@@ -18,4 +18,10 @@ func main() {
 	}
 
 	fmt.Printf("Find number %v \n", basics.SearchNumber([]int{3, 2, 1}, 1))
+
+	fmt.Printf("Is Valid anagram %v \n", basics.ValidAnagram("racecar", "carrace"))
+	fmt.Printf("Is Valid anagram %v \n", basics.ValidAnagram("jar", "jam"))
+
+	fmt.Printf("Length of string %v \n", basics.GetLen("abc"))
+
 }
