@@ -1,4 +1,4 @@
-package arithemetic
+package basics
 
 import (
 	"unicode/utf8"
