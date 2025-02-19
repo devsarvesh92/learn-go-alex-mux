@@ -24,4 +24,7 @@ func main() {
 
 	fmt.Printf("Length of string %v \n", basics.GetLen("abc"))
 
+	scrapper := basics.ScrapperFactory["web"]
+	result := scrapper.Scrape("abc")
+	fmt.Println("Result", result.Content, result.TimeTaken)
 }
