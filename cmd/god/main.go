@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"learn-go-alex-mux/cmd/basics"
+	"sync"
 )
 
 func main() {
@@ -42,4 +43,36 @@ func main() {
 	fmt.Println("Result", numbers)
 	fmt.Printf("Memory location result: %p\n", &numbers)
 	fmt.Println("*******************************************")
+
+	fmt.Println("*******************************************")
+
+	var wg sync.WaitGroup
+	var mu sync.RWMutex
+	var nums []int = []int{}
+
+	for i := 0; i < 100; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			mu.Lock()
+			nums = append(nums, i)
+			mu.Unlock()
+		}(i)
+	}
+
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			mu.RLock()
+			fmt.Println(nums)
+			mu.RUnlock()
+		}()
+	}
+
+	wg.Wait()
+
+	fmt.Println(nums)
+	fmt.Println("*******************************************")
+
 }
