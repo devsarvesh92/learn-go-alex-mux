@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"learn-go-alex-mux/cmd/basics"
 	"sync"
+	"time"
 )
 
 func main() {
@@ -74,5 +75,14 @@ func main() {
 
 	fmt.Println(nums)
 	fmt.Println("*******************************************")
+
+	channel := make(chan int, 10)
+	go basics.ProcessChannel(channel)
+
+	for i := range channel {
+		time.Sleep(time.Second)
+		fmt.Print(i)
+	}
+	fmt.Print("Done processing records")
 
 }
