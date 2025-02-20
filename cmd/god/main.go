@@ -85,4 +85,25 @@ func main() {
 	}
 	fmt.Print("Done processing records")
 
+	fmt.Println("*******************************************")
+
+	var fwg sync.WaitGroup
+	chicken_channel := make(chan string)
+	tofu_channel := make(chan string)
+
+	fwg.Add(2)
+	go func() {
+		defer fwg.Done()
+		basics.CheckChickenSales(chicken_channel, []string{"abc.com", "costco.com", "kfc.com"})
+	}()
+	go func() {
+		defer fwg.Done()
+		basics.CheckTofuSales(tofu_channel, []string{"abc.com", "costco.com", "kfc.com"})
+	}()
+	go func() {
+		defer fwg.Done()
+		basics.SendMessage(chicken_channel, tofu_channel)
+	}()
+
+	fwg.Wait()
 }
