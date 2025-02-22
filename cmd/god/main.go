@@ -106,4 +106,7 @@ func main() {
 	}()
 
 	fwg.Wait()
+
+	fmt.Println("*******************************************")
+	fmt.Println("Result of number addition", basics.SumSlice([]int{1, 2, 3, 4}))
 }
